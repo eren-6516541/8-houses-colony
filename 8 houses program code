@@ -1,0 +1,74 @@
+ class Program
+    {
+         static void Main(string[] args)
+            {
+                int[] diziSerisi1 = { 1, 0, 0, 0, 0, 1, 0, 0 };
+
+                Console.WriteLine("Örnek 1");
+                Console.Write("Giriş : ");
+                diziYazdir(diziSerisi1);
+                diziSerisi1 = cikisSerisi(diziSerisi1, 1);
+                Console.Write("Çıkış : ");
+                diziYazdir(diziSerisi1);
+
+                Console.WriteLine("\nÖrnek 2");
+                int[] diziserisi2 = { 1, 1, 1, 0, 1, 1, 1, 1 };
+                Console.Write("Giriş : ");
+                diziYazdir(diziserisi2);
+                diziserisi2 = cikisSerisi(diziserisi2, 2);
+                Console.Write("Çıkış : ");
+                diziYazdir(diziserisi2);
+
+                Console.ReadKey();
+            }
+
+        private static int[] cikisSerisi(int[] diziDurumu, int sondeger)
+        {
+            if (diziDurumu.Length !=8 || sondeger<1)
+            {
+                return diziDurumu;
+            }
+            int ilkdegeri, oncekideger, sonrakideger;
+            for (int i = 0; i < sondeger; i++)
+            {
+                ilkdegeri = 0;
+                oncekideger = 0;
+                sonrakideger = 0;
+
+                while (ilkdegeri< diziDurumu.Length)
+                {
+                    if (ilkdegeri< diziDurumu.Length-1)
+                    {
+                        sonrakideger = diziDurumu[ilkdegeri + 1];
+                    }
+                    else if (ilkdegeri== diziDurumu.Length-1)
+                    {
+                        sonrakideger = 0;
+                    }
+                    if (sonrakideger==oncekideger)
+                    {
+                        oncekideger = diziDurumu[ilkdegeri];
+                        diziDurumu[ilkdegeri] = 0;
+                    }
+                    else
+                    {
+                        oncekideger = diziDurumu[ilkdegeri];
+                        diziDurumu[ilkdegeri] = 1;
+                    }
+                    ilkdegeri++;
+                }
+
+            }
+
+            return diziDurumu;
+        }
+
+        private static void diziYazdir(int[] dizi)
+        {
+            for (int i = 0; i < dizi.Length; i++)
+            {
+                Console.Write(dizi[i] + "\t");
+            }
+            Console.WriteLine();
+        }
+    }
